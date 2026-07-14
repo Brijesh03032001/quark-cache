@@ -3,7 +3,9 @@
 
 #include <iostream>
 #include <csignal>
+#include <cstdlib>
 #include <memory>
+#include <string>
 #include <thread>
 #include <chrono>
 
@@ -31,7 +33,12 @@ int main() {
     });
     expiry_thread.detach();
 
-    quarkcache::TcpServer server(store, "127.0.0.1", 9000);
+    const char* host_env = std::getenv("QUARKCACHE_BIND_HOST");
+    const char* port_env = std::getenv("QUARKCACHE_PORT");
+    const std::string host = host_env ? host_env : "0.0.0.0";
+    const auto port = static_cast<uint16_t>(port_env ? std::stoi(port_env) : 9000);
+
+    quarkcache::TcpServer server(store, host, port);
     g_server = &server;
 
     try {
