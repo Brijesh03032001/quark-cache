@@ -9,25 +9,54 @@ const cache = createCache({ key: "mui", prepend: true });
 
 const theme = createTheme({
   palette: {
-    mode: "dark",
-    primary: { main: "#7c3aed" },
-    secondary: { main: "#06b6d4" },
+    mode: "light",
+    primary: { main: "#5b5bd6" },
+    secondary: { main: "#0891b2" },
+    success: { main: "#16a34a" },
+    warning: { main: "#d97706" },
+    error: { main: "#dc2626" },
     background: {
-      default: "#0f0f14",
-      paper: "#1a1a24",
+      default: "#f5f7fb",
+      paper: "#ffffff",
     },
+    text: {
+      primary: "#172033",
+      secondary: "#667085",
+    },
+    divider: "rgba(23,32,51,0.1)",
   },
-  shape: { borderRadius: 10 },
+  shape: { borderRadius: 8 },
+  typography: {
+    fontFamily: "Inter, Arial, Helvetica, sans-serif",
+    h5: { letterSpacing: 0 },
+    h6: { letterSpacing: 0 },
+    button: { textTransform: "none", fontWeight: 700 },
+  },
   components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          backgroundColor: "#f5f7fb",
+        },
+      },
+    },
     MuiCard: {
       defaultProps: { variant: "outlined" },
       styleOverrides: {
-        root: { borderColor: "rgba(255,255,255,0.08)" },
+        root: {
+          borderColor: "rgba(23,32,51,0.1)",
+          boxShadow: "0 12px 30px rgba(18, 27, 54, 0.06)",
+        },
       },
     },
     MuiTableCell: {
       styleOverrides: {
-        root: { borderColor: "rgba(255,255,255,0.06)" },
+        root: { borderColor: "rgba(23,32,51,0.08)" },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: { borderRadius: 8 },
       },
     },
   },
